@@ -1,10 +1,10 @@
 var gameInfo = {
 	correct: 0,
 	incorrect: 0,
-	timeLeft: 5,
+	timeLeft: 90,
 	countDown: function() {
 					gameInfo.timeLeft--;
-					$("#timeLeft").html(gameInfo.timeLeft);
+					$("#timeLeft").html("<h3>" + "Timer:" + " " + gameInfo.timeLeft);
 
 					if (timeLeft === 0) {
 						alert("Times Up!");
@@ -15,6 +15,7 @@ var gameInfo = {
 
 var timer;
 
+ //====>This Code is Not Working.<=====
 function stop(){
     	clearInterval(gameInfo.timeLeft); // stops the timer
     }
@@ -42,20 +43,23 @@ var questions = [{
 			$("#trivia-questions").append("<h3>" + questions[i].question);
 
 			for (var j = 0; j < questions.length; j++) {
-			$("#trivia-questions").append("<button>" + questions[i].choices[j]);
+			$("#trivia-questions").append("<button id = 'button-choices'>" + questions[i].choices[j]);
 			}
 		}
 	 // Timer Interval, Count down 1000 = 1 sec
 		timer = setInterval(gameInfo.countDown, 1000)
 	};
 
-	function finish(){
-    	clearInterval(gameInfo.counter); // stops the timer
-    	timer();
-    }
+// // //====>This Code is Not Working.<=====
+// 	function finish(){						
+//     	clearInterval(gameInfo.counter); // stops the timer
+//     	timer();						
+    
 
 	startGame();
 
+// Comparing userGuess to Answer, then Print Score. 
+//====>This Code is Not Working.<=====
 		function endGame() {
 			$("button").on("click", function() {
 				var userGuess = $(this).html();
@@ -63,10 +67,10 @@ var questions = [{
 				if (userGuess === questions[0].validAnswer || questions[1].validAnswer ||
 					question[2].validAnswer || questions[3].validAnswer) {
 					gameInfo.correct++;
-					$(".correct-answer").text(gameInfo.correct);
+					$("#correct-answer").text("<h3>" + "Correct:" + " " + gameInfo.correct);
 				} else {
 					gameInfo.incorrect++;
-					$(".incorrect-answer").text(gameInfo.incorrect);
+					$("#incorrect-answer").text("<h3>" + "Incorrect:" + " " + gameInfo.incorrect);
 				}
 			})
 		};
